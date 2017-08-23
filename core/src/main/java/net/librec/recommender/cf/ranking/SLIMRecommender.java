@@ -15,7 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with LibRec. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.librec.recommender.cf.ranking;
+//package net.librec.recommender.cf.ranking;
+package src.main.java.net.librec.recommender.cf.ranking;
 
 import net.librec.annotation.ModelData;
 import net.librec.common.LibrecException;
@@ -161,7 +162,8 @@ public class SLIMRecommender extends AbstractRecommender {
                         errors /= nnCount;
 
                         double coefficient = coefficientMatrix.get(nearestNeighborItemIdx, itemIdx);
-                        loss += errors + 0.5 * regL2Norm * coefficient * coefficient + regL1Norm * coefficient;
+                        // In the original implementation error isn't multiplied by 0.5.
+                        loss += 0.5 * errors + 0.5 * regL2Norm * coefficient * coefficient + regL1Norm * coefficient;
 
 
                         double update = 0.0d;
