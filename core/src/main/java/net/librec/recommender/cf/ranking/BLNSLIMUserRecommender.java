@@ -1,5 +1,4 @@
-//package net.librec.recommender.cf.ranking;
-package src.main.java.net.librec.recommender.cf.ranking;
+package net.librec.recommender.cf.ranking;
 
 import com.google.common.collect.BiMap;
 import net.librec.annotation.ModelData;
@@ -25,7 +24,7 @@ import net.librec.math.structure.VectorEntry;
  * This work is implemented based on librec SLIMRecommender which is based on the following paper
  * Xia Ning and George Karypis, <strong>SLIM: Sparse Linear Methods for Top-N Recommender Systems</strong>, ICDM 2011. <br>
  *
- * This method is called Balanced Neighborhood which is extending SLIMUserRecommender based on the following paper
+ * This current method is called Balanced Neighborhood which is extending SLIMUserRecommender based on the following paper
  * Robin Burke, Nasim Sonboli, Masoud Mansoury and Aldo Ordonez-Gauger, <strong>Balanced Neighborhoods for
  * Fairness-aware Collaborative Recommendation</strong> FATREC 2017.<br>
  * written by Nasim Sonboli
@@ -80,7 +79,7 @@ public class BLNSLIMUserRecommender extends AbstractRecommender {
     private Set<Integer> allUsers;
 
     /**
-     *
+     * this variable should the path to the membership file.
      */
     private String membershipFilePath;
     /**
@@ -96,8 +95,7 @@ public class BLNSLIMUserRecommender extends AbstractRecommender {
         regL1Norm = conf.getFloat("rec.slim.regularization.l1", 1.0f);
         regL2Norm = conf.getFloat("rec.slim.regularization.l2", 1.0f);
         Lambda3 = conf.getFloat("rec.slim.regularization.user.balance.controller", 20.0f);
-        membershipFilePath = conf.get("data.membership.input.path");
-
+        membershipFilePath = conf.get("data.membership.input.path", "data/membership/ml-1m/");
         // set it in the configuration file
 
 
@@ -118,8 +116,13 @@ public class BLNSLIMUserRecommender extends AbstractRecommender {
 
         //needs to be added to the configuration file
         //read a file showing if a user belongs to the protected group or not and create an M x M matrix
-        //String content = readFile("./FatSLIMRec/data/membership/membership_movielens.txt");
-        String content = readFile(membershipFilePath);
+
+        /**
+         * can be extended to read as many files as needed with a for loop
+         */
+        File[] filenames = new File(membershipFilePath).listFiles();
+        System.out.println("Reading file: " + filenames[0]);
+        String content = readFile(filenames[0]);
 
         String[] userSplited = content.split("\r\n");
 
@@ -137,10 +140,9 @@ public class BLNSLIMUserRecommender extends AbstractRecommender {
     /**
      * Reading a file
      */
-    public String readFile(String filename)
+    public String readFile(File file)
     {
         String content = null;
-        File file = new File(filename);
         FileReader reader = null;
         try {
             reader = new FileReader(file);
