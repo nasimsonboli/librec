@@ -1,5 +1,5 @@
 //package net.librec.recommender.cf.ranking;
-package src.main.java.net.librec.recommender.cf.ranking;
+package net.librec.recommender.cf.ranking;
 
 /**
  * Created by Nasim on 6/17/2017. Borrowed heavily from SLIMRecommender in Librec.

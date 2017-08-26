@@ -16,7 +16,7 @@
  * along with LibRec. If not, see <http://www.gnu.org/licenses/>.
  */
 //package net.librec.recommender.cf.ranking;
-package src.main.java.net.librec.recommender.cf.ranking;
+package net.librec.recommender.cf.ranking;
 
 import net.librec.annotation.ModelData;
 import net.librec.common.LibrecException;

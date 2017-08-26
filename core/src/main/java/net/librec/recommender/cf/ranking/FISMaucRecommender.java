@@ -17,6 +17,7 @@
  */
 package net.librec.recommender.cf.ranking;
 
+
 import com.google.common.cache.LoadingCache;
 import net.librec.annotation.ModelData;
 import net.librec.common.LibrecException;

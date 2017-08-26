@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with LibRec. If not, see <http://www.gnu.org/licenses/>.
  */
+//package test.java.net.librec;
 package net.librec;
 
 import net.librec.conf.ConfigurationTestCase;
@@ -122,6 +123,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	RankALSTestCase.class,
 	RankSGDTestCase.class,
 	SLIMTestCase.class,
+	SLIMUserTestCase.class,//slim-u
 	WBPRTestCase.class,
 	WRMFTestCase.class,
 	//recommender.content
